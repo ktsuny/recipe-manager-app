@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Recipe Manager</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+    <header>
+        <h1><img src="favicon_io/android-chrome-192x192.png" alt="Food Icon"> Recipe Manager</h1>
+    </header>
+
+
+
+    <nav class = "global">
+        <a href="index.html">Home</a>
+        <a href="create.html">Create</a>
+        <a href="tutorial.html">Tutorials</a>
+        <input type="text" placeholder="Search..">
+        <!--reference: https://www.w3schools.com/howto/howto_css_searchbar.asp-->
+    </nav>
+
+    <h3>
+      <p>
+        Welcome! This app will allow you to store and access your recipes easily. You can view, add, update, and delete your favorate recipes. And there will be a search and random function for when you are cooking with ingredients you have on hand, or if you don't feel like choosing.
+      </p>
+    </h3>
+    <style>
+        .recipe-list {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: center;
+          padding: 0;
+        }
+
+        .recipe-card {
+          width: 200px;
+          border: 1px solid #ddd;
+          padding: 10px;
+          text-align: center;
+        }
+
+        .add-recipe-button {
+          background-color: #4CAF50; /* Green background */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          cursor: pointer;
+          border-radius: 50%; /* Rounded corners */
+          line-height: 0; /* Adjust line-height to suit your 'plus' icon size */
+        }
+
+        .add-recipe-button:before {
+          content: '+';
+          font-size: 25px; /* Size of the 'plus' icon */
+        }
+      </style>
+      </head>
+      <body>
+
+      <div class="recipe-list">
+        <button class="add-recipe-button" onclick="location.href='create.html';"></button>
+        <!--reference: https://www.w3schools.com/w3css/w3css_buttons.asp -->
+
+        <div class="recipe-card">Recipe 1</div>
+        <div class="recipe-card">Recipe 2</div>
+        <div class="recipe-card">Recipe 3</div>
+        <!-- Other recipe cards -->
+
+        <!-- Plus button to add a new recipe -->
+
+      </div>
+
+
+
+      </body>
+
+</body>
+</html>

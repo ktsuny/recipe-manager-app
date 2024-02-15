@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Recipe Manager</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">  
+</head>
+<body>
+    <header>
+        <h1><img src="favicon_io/android-chrome-192x192.png" alt="Food Icon"> Recipe Manager</h1>
+    </header>
+
+    <nav class = global>
+        <a href="index.html">Home</a>
+        <a href="create.html">Create</a>
+        <a href="tutorial.html">Tutorials</a>
+        <input type="text" placeholder="Search..">
+    </nav>
+    <main>
+        <section>
+            <h2>New Recipe</h2>
+            <form action="connect.php" method="POST" enctype="multipart/form-data"></form>
+                <p>It takes about 5 minutes to create a new recipe</p>
+    
+                <label for="name">Recipe Name:</label>
+                <input type="text"  id="name" name="name" placeholder="Recipe 1" required autofocus>
+                
+                <label for="size">Serving Size:</label>
+                <input type="number" id="size" name="size" placeholder="2" required>
+    
+                <fieldset>
+                    <legend>Recipe Details</legend>
+    
+                    <label for="ingredients">Ingredients:</label>
+                    <textarea id="ingredients" name="ingredients" minlength="3" maxlength="2500" required placeholder="1. "></textarea>
+    
+                    <label for="steps">Steps:</label>
+                    <textarea id="steps" name="steps" minlength="3" maxlength="10000" required></textarea>
+    
+                    <label for="img">Select image:</label>
+                    <input type="file" id="img" name="img" accept="image/*">
+                </fieldset>
+    
+                <button type="submit">Save</button>
+            </form>
+        </section>
+    </main>
+
+    <!--reference: https://www.w3schools.com/tags/att_input_accept.asp-->
+
+</body>
+</html>
