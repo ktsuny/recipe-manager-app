@@ -3,12 +3,12 @@ DROP TABLE IF EXISTS Recipes;
 /*!40101 SET character_set_client = utf8 */;
 
 CREATE table Recipes (
-	id int AUTO_INCREMENT NOT NULL,
+	recipe_id int AUTO_INCREMENT NOT NULL,
     recipe_name varchar(50) NOT NULL,
     serving_size int NOT NULL DEFAULT 2,
     ingredients varchar(300) NOT NULL,
     steps varchar(700),
-    PRIMARY KEY (id)
+    PRIMARY KEY (recipe_id)
 );
 
 INSERT INTO Recipes (recipe_name, serving_size, ingredients, steps)

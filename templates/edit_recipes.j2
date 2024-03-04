@@ -1,0 +1,77 @@
+<html>
+<!-- Adapted from the edit_people.j2 -->
+<!-- canvas module for learning purpose -->
+<!-- source https://github.com/osu-cs340-ecampus/flask-starter-app -->
+
+<head>
+    <title>Edit Recipes</title>
+    <link href="static/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div>
+        <table border="1" cellpadding="5">
+            <caption> Editing recipes: </caption>
+            <nav class="global">
+                <a href="index">Home</a> <a href="create">Create Recipe</a> <a href="tutorial">Tutorial</a>
+            </nav>
+            <!-- Access data tuple passed from app.py -->
+            {% if data %}
+            <thead>
+                <tr>
+                    <!-- Iterate through each key in the first entry to get the column name -->
+                    {% for key in data[0].keys() %}
+
+                    <!-- Create a <th> tag with the key inside of it, this will be our header row -->
+                    <th scope="col" data-field="{{ key }}" data-filter-control="input">{{ key }}</th>
+
+                    <!-- End of this for loop -->
+                    {% endfor %}
+                </tr>
+
+            <tbody>
+                <!-- Now, iterate through every item in data -->
+                {% for item in data %}
+                <tr>
+                    <!-- Then iterate through every key in the current item dictionary -->
+                    {% for key in item.keys() %}
+
+                    <!-- Create a <td> element with the value of that key in it -->
+                    <td>{{item[key]}}</td> {% endfor %}
+                </tr>
+                {% endfor %}
+                {% endif %}
+        </table>
+
+        <div id="edit">
+            <!-- form to edit data recipess-->
+            <form id="editRecipe" action="/edit_recipes/{{data[0].recipe_id}}" method="post">
+                <legend><strong>Edit Recipe</strong></legend>
+                <fieldset>
+                    <!-- We can preset form inputs to match attributes currently stored for 'id' of recipe to be updated via value= and accessing our passed data tuple -->
+                    <!-- Create hidden form input to store the passed 'id' of the recipe we are editing so we can access it easily in our 'POST' method in our app.py -->
+                    <input type="hidden" value="{{data[0].recipe_id}}" class="form-control" id="recipe_id"
+                        name="recipe_id" required>
+
+                    <label for="recipe_name">recipe name</label>
+                    <textarea class="form-control" id="recipe_name" name="recipe_name" placeholder=""
+                        required></textarea>
+
+                    <label for="serving_size">serving size:</label>
+                    <input type="number" class="form-control" id="serving_size" name="serving_size"
+                        pattern="[A-Za-z0-9]{1,}" placeholder="" min="0" required>
+
+                    <label for="ingredients">Ingredients:</label>
+                    <textarea class="form-control" id="ingredients" name="ingredients" placeholder=""
+                        required></textarea>
+
+                    <label for="steps">Steps:</label>
+                    <textarea class="form-control" id="steps" name="steps" placeholder="" required></textarea>
+
+                </fieldset>
+                <input type="submit" value="Edit Recipe" name="Edit_Recipe" class="btn btn-primary"
+                    style="margin:.5rem;">
+                <a href='/recipes'><input class="btn" type="button" value="cancel"></a>
+            </form>
+
+</html>

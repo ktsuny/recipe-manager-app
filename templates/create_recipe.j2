@@ -1,0 +1,42 @@
+<head>
+  <title>Recipe Manager</title>
+  <link href="static/style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+<body onload="browseRecipes()">
+
+  <h1>Recipes</h1>
+
+  <!-- nav menue bar -->
+  <nav class="global">
+    <a href="recipes">Home</a> <a href="create">Create Recipe</a> <a href="tutorial">Tutorial</a>
+  </nav>
+  <h2>Welcome! This app will allow you to store and access your recipes easily. You can view, add, update, and delete your favorate recipes. 
+  <br>You can use the search bar for when you are cooking with ingredients you have on hand, or the random recipe generator if you don't feel like choosing.</h2>
+
+<div id="insert">
+		<!-- form to INSERT new data into Recipes table-->
+		<form id="insertRecipe" action="/recipes" method="post">
+			<legend><strong>Add Recipe</strong></legend>
+			<fieldset>
+                <!-- placeholder shows ghost text, required forces an input, pattern forces input adherence -->
+				<label for="recipe_name">recipe name</label>
+				 <textarea class="form-control" id="recipe_name" name="recipe_name" placeholder="" required></textarea>
+
+				<label for="serving_size">serving size:</label>
+				<input type="number" class="form-control" id="serving_size" name="serving_size" pattern="[A-Za-z0-9]{1,}" placeholder="" min="0" required>
+
+				<label for="ingredients">Ingredients:</label>
+        <textarea class="form-control" id="ingredients" name="ingredients" placeholder="" required></textarea>
+
+        <label for="steps">Steps:</label>
+        <textarea class="form-control" id="steps" name="steps" placeholder="" required></textarea>
+
+
+            </fieldset>
+
+            <!-- Create 'Add Recipe' and 'Cancel' buttons -->
+			<input type="submit" value="Add Recipe" name="Add_Recipe" class="btn btn-primary" style="margin:.5rem;">
+			<input class="btn" type="button" value="Cancel" onClick="browseRecipes()"> 
+        </form>
+	</div><!--insert-->

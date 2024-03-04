@@ -1,0 +1,119 @@
+:root {
+    --SkyBlue: rgb(61, 126, 194);
+    --SkyBlueT: rgba(61, 126, 194, 0.5);
+    --DarkBlue: rgba(3, 88, 140);
+    --DarkBlueT: rgba(3, 88, 140, 0.5);
+    --DarkGreen: rgb(2, 73, 89);
+    --DarkGreenT: rgba(2, 73, 890.5);
+    --LightBrown: rgb(242, 196, 155);
+    --LightBrownT: rgba(242, 196, 155, 0.8);
+    --DarkBrown: rgb(166, 139, 129);
+    --DarkBrownT: rgba(166, 139, 129, 0.5);
+  }
+  
+  /*  ----- Viewport ----- elements inherited by all remaining elements ----- */
+  body {       /* Can alternatively define in html {} or :root {} */
+     /* Define with at least one font name and its related generic family name.*/
+    background-color: var(--LightBrownT);
+
+    margin:2, auto;
+    padding:2px;
+    font-family: 'PT Sans';
+  }
+  
+  /*  ----- Page layout blocks -----  */
+  header, main, footer {
+    padding: 1%; 
+    margin:0 5% ;
+    
+  }
+  header {
+    color: var(--LightBrown);
+  }
+  header img {width:50px; padding: 5px;}
+  main {
+    background-color: var(--LightBrownT);
+    color: var(--DarkBlue);
+  }
+  footer {background-color: var(--LightBrownT);}
+  
+  
+  /*  ----- Navigation ----- Override text links for navigation only.  */
+  nav.global {
+    margin:0 5%;
+    padding:1%;
+    line-height:1;
+    text-align:left;
+  }
+  nav.global a {
+    border-right:3px solid var(--DarkBrown);
+    border-radius:0 3px 3px 0;
+    background-color:var(--DarkBrown); 
+    color:var(--SkyBlue);
+    font-weight:bold;
+    line-height:1;
+    margin:5% auto;
+    padding:1% 2%;
+    text-decoration:none;
+  }
+  nav a:hover {
+  border-right:3px solid var(--DarkBrown);
+  background-color:var(--LightBrown);
+  color: var(--DarkGreen);
+  }
+
+  nav.local {
+    background-color:var(--LightBrownT);
+    display: flex;
+    flex-flow: row ;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin:0 auto; 
+    padding:0;
+  }
+  nav.local a {
+    border-right:0px solid transparent;
+    border-top:1px solid transparent;
+    border-radius:0;
+    background-color:transparent;
+    color:var(--DarkGreen);
+    line-height:1;
+    margin-right:.5% ;
+    padding:1% 1.5%;
+    font-size:100%;
+    text-decoration:none;
+    text-align:center
+  }
+  nav.local a:hover {
+    border-right:0px solid transparent;
+    border-top:1px solid var();
+    background-color:transparent;
+    /* color: var(--gray); */
+  }
+  
+  .add-recipe-btn {
+    display: inline-block;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    font-size: 50px ;
+    border-radius: 50%;
+    /* Makes it circular */
+    line-height: 25px;
+    /* Adjust based on the size to vertically center the plus sign */
+    text-align: center;
+    text-decoration: none;
+    /* Removes underline */
+    width: 45px;
+    /* Makes it circular */
+    height: 45px;
+    /* Makes it circular */
+  }
+  
+  .add-recipe-btn:hover {
+    background-color: #0056b3;
+    color: #fff;
+  }
+  
