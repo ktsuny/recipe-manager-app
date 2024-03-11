@@ -1,0 +1,48 @@
+<!-- search_results.j2 -->
+<link href="../static/style.css" rel="stylesheet" type="text/css" />
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Details</title>
+    <!-- Add any additional CSS here -->
+</head>
+<body>
+    <p><strong>Random Recipe Number:</strong> {{ random_number }}</p>
+
+{% if data %}
+<div class="recipe-container">
+    <h2>{{ data.recipe_name }}</h2>
+
+    
+    {% if data.serving_size %}
+    <p><strong>Serving Size:</strong> {{ data.serving_size }}</p>
+    {% endif %}
+    
+    <p><strong>Ingredients:</strong></p>
+    <p>{{ data.ingredients }}</p>
+    
+    <p><strong>Steps:</strong></p>
+    <ol>
+        {% set steps = data.steps.split(' ') %}
+        {% for step in steps %}
+            {% if step.startswith('1.') %}
+                {% if loop.index > 1 %}
+                    </li> <!-- Close the previous <li> tag if it's not the first step -->
+                {% endif %}
+                <li>{{ step[3:] }} <!-- Start a new <li> tag and remove the numbering from the step -->
+            {% else %}
+                {{ step }} <!-- Continue adding text to the current <li> -->
+            {% endif %}
+        {% endfor %}
+        </li> <!-- Close the last <li> tag -->
+    </ol>
+</div>
+{% else %}
+<p>No recipe found for the generated random number.</p>
+{% endif %}
+
+</body>
+</html>
+

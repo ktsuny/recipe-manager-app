@@ -2,7 +2,7 @@
 
 <head>
   <title>Recipe Manager</title>
-  <link href="static/style.css" rel="stylesheet" type="text/css" />
+  <link href="../static/style.css" rel="stylesheet" type="text/css" />
 
   <script language="JavaScript">
     /*
@@ -47,20 +47,7 @@
     function deleteRecipes(recipe_id) { showform('delete'); }
     function browseRecipes() { showform('browse'); }
     function showAll() { showform('all'); }
-    document.addEventListener("DOMContentLoaded", function () {
-      // Ensures the DOM is fully loaded before attaching event listeners
-      var generateRandomBtn = document.getElementById("generateRandom");
-      if (generateRandomBtn) {
-        generateRandomBtn.addEventListener("click", function () {
-          fetch('http://localhost:5001/random') // Adjust the URL based on your microservice location
-            .then(response => response.json())
-            .then(data => {
-              document.getElementById("randomNumber").textContent = "Random Number: " + data.number;
-            })
-            .catch(error => console.error('Error:', error));
-        });
-      }
-    });
+
   </script>
 </head>
 
@@ -86,8 +73,6 @@
     generator if you don't feel like choosing.
   </h2>
   <a href="#" onClick="newRecipe()" class="add-recipe-btn">+</a>
-
-
 
   <div id="browse">
 

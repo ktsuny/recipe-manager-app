@@ -5,15 +5,16 @@ from flask import Flask, render_template, json, redirect
 from flask_mysqldb import MySQL
 from flask import request
 import os
+import random
 
 
 app = Flask(__name__)
 
 # database connection info
 app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
-app.config['MYSQL_USER'] = 'cs340_sunyus'  #osu username
-app.config['MYSQL_PASSWORD'] = '8409'        #last 4 of db pass   
-app.config['MYSQL_DB'] = 'cs340_sunyus'    #osu username 
+app.config['MYSQL_USER'] = 'cs340_'  #osu username
+app.config['MYSQL_PASSWORD'] = ''        #last 4 of db pass   
+app.config['MYSQL_DB'] = 'cs340_'    #osu username 
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
 mysql = MySQL(app)
@@ -62,8 +63,31 @@ def recipes():
 
         # render edit_recipes page passing our data to the edit_recipes template
         return render_template("recipes.j2", data=data)
+    
+@app.route("/recipes/<int:recipe_id>", methods=["POST", "GET"])
+def recipe_detail(recipe_id):
+    # mySQL query to grab the info of the cat with our passed id
+    if request.method == "GET":
+        query = "SELECT * FROM Recipes WHERE recipe_id = %s" % (recipe_id)
+        cur = mysql.connection.cursor()
+        cur.execute(query)
+        data = cur.fetchall()
+
+        # render edit_cats page passing our query data and adopter data to the edit_cats template
+        return render_template("search_results.j2", data=data)
 
 
+@app.route('/random_recipe')
+def random_recipe():
+    random_number = random.randint(1, 4)
+    print(random_number)
+    cur = mysql.connection.cursor()
+    cur.execute('SELECT * FROM Recipes WHERE recipe_id = %s', (random_number,))
+    recipe = cur.fetchone()
+
+
+    return render_template('random_recipe.j2', data=recipe, random_number=random_number)
+    
 @app.route("/create")
 def create():
     return render_template('create_recipe.j2')
@@ -74,9 +98,8 @@ def tutorial():
 
 @app.route('/search', methods=['GET'])
 def search():
-    search_query = request.args.get('search', '')  # Retrieve the search term from query parameters
+    search_query = request.args.get('search', '')  
     if search_query:
-        # Use parameterized queries to prevent SQL injection
         query = "SELECT * FROM Recipes WHERE recipe_name LIKE %s"
         cur = mysql.connection.cursor()
         cur.execute(query, ('%' + search_query + '%',))
