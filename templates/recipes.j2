@@ -63,15 +63,19 @@
   <form action="/search" method="get">
     <input type="text" id="search" name="search" placeholder="Search for recipes...">
     <button type="submit">Search</button>
-    <button id="generateRandom">Generate Random Recipe</button>
   </form>
-    
+  {# <button action="/random_recipe" id="generateRandom">Generate Random Recipe</button> #}
+
+  <form action="/random_recipe" method="get">
+    <button type="submit">Generate Random Recipe</button>
+  </form>
 
   <h2>Welcome! This app will allow you to store and access your recipes easily. You can view, add, update, and delete
     your favorate recipes.
-    <br>You can use the search bar for when you are cooking with ingredients you have on hand, or the random recipe
-    generator if you don't feel like choosing.
+    <br>You can use the search bar to find recipes by name, or use the random recipe
+    generator if you don't feel like choosing a recipe to use.
   </h2>
+  <h3>Recipe Creation takes less than 5 minutes</h3>
   <a href="#" onClick="newRecipe()" class="add-recipe-btn">+</a>
 
   <div id="browse">
@@ -103,7 +107,11 @@
 
           <!-- Create our edit/delete buttons -->
           <td><a href="edit_recipes/{{item.recipe_id}}" class="btn btn-default">Edit</a></td>
-          <td><a href="delete_recipes/{{item.recipe_id}}" class="btn btn-default">Delete</a></td>
+          {# <td><a href="delete_recipes/{{item.recipe_id}}" class="btn btn-default">Delete</a></td> #}
+          <td><a href="#"
+              onclick="if(confirm('Are you sure you want to delete this recipe?')){ window.location.href='delete_recipes/{{item.recipe_id}}'; } return false;"
+              class="btn btn-default">Delete</a>
+          </td>
 
 
         </tr>
@@ -119,10 +127,10 @@
       <legend><strong>Add Recipe</strong></legend>
       <fieldset>
         <!-- placeholder shows ghost text, required forces an input, pattern forces input adherence -->
-        <label for="recipe_name">recipe name</label>
+        <label for="recipe_name">Recipe Name</label>
         <textarea class="form-control" id="recipe_name" name="recipe_name" placeholder="" required></textarea>
 
-        <label for="serving_size">serving size:</label>
+        <label for="serving_size">Serving Size:</label>
         <input type="number" class="form-control" id="serving_size" name="serving_size" pattern="[A-Za-z0-9]{1,}"
           placeholder="" min="0" required>
 

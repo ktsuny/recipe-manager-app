@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/baby/Desktop/recipe-manager-app-flask/recipe-manager-app-1/venv"
+VIRTUAL_ENV="/Users/baby/Desktop/recipe-manager-app/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

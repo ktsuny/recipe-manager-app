@@ -6,15 +6,16 @@ from flask_mysqldb import MySQL
 from flask import request
 import os
 import random
-
+import jsonify
+import requests
 
 app = Flask(__name__)
 
 # database connection info
 app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
-app.config['MYSQL_USER'] = 'cs340_'  #osu username
-app.config['MYSQL_PASSWORD'] = ''        #last 4 of db pass   
-app.config['MYSQL_DB'] = 'cs340_'    #osu username 
+app.config['MYSQL_USER'] = 'cs340_sunyus'  #osu username
+app.config['MYSQL_PASSWORD'] = '8409'        #last 4 of db pass   
+app.config['MYSQL_DB'] = 'cs340_sunyus'    #osu username 
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
 mysql = MySQL(app)
@@ -76,33 +77,37 @@ def recipe_detail(recipe_id):
         # render edit_cats page passing our query data and adopter data to the edit_cats template
         return render_template("search_results.j2", data=data)
 
-@app.route('/number', methods=['GET'])
+@app.route('/random_recipe', methods=['GET'])
 def get_products():
-    response = requests.get(f"{BASE_URL}/products")
+    response = requests.get("http://localhost:5555/random")
     if response.status_code != 200:
         return jsonify({'error': response.json()['message']}), response.status_code
-    products = []
-    for product in response.json()['products']:
-        product_data = {
-            'id': product['id'],
-            'title': product['title'],
-            'brand': product['brand'],
-            'price': product['price'],
-            'description': product['description']
-        }
-        products.append(product_data)
-    return jsonify({'data': products}), 200 if products else 204
+    else:
+        random_number = int(response.json()['random'])
+        query1 = "SELECT COUNT(recipe_id) FROM Recipes"
+        cur = mysql.connection.cursor()
+        cur.execute(query1)
+        index = cur.fetchone()
+        print(index)
+        num = index['COUNT(recipe_id)']
+        
+        random_number = random_number % num +1
 
-@app.route('/random_recipe')
-def random_recipe():
-    random_number = random.randint(1, 4)
-    print(random_number)
-    cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM Recipes WHERE recipe_id = %s', (random_number,))
-    recipe = cur.fetchone()
-
+        cur = mysql.connection.cursor()
+        cur.execute('SELECT * FROM Recipes WHERE recipe_id = %s', (random_number,))
+        recipe = cur.fetchone()
 
     return render_template('random_recipe.j2', data=recipe, random_number=random_number)
+    
+# @app.route('/random_recipe')
+# def random_recipe():
+#     random_number = random.randint(1, 4)
+#     print(random_number)
+#     cur = mysql.connection.cursor()
+#     cur.execute('SELECT * FROM Recipes WHERE recipe_id = %s', (random_number,))
+#     recipe = cur.fetchone()
+
+#     return render_template('random_recipe.j2', data=recipe, random_number=random_number)
     
 @app.route("/create")
 def create():

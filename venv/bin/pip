@@ -1,4 +1,4 @@
-#!/Users/baby/Desktop/recipe-manager-app-flask/recipe-manager-app-1/venv/bin/python3.11
+#!/Users/baby/Desktop/recipe-manager-app/venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys
