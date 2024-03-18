@@ -115,7 +115,7 @@ def create():
 
 @app.route("/tutorial")
 def tutorial():
-    return render_template('tutorial.j2')
+    return redirect("../static/Recipe Manager Tutorial.pdf")
 
 @app.route('/search', methods=['GET'])
 def search():

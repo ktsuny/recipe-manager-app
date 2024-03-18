@@ -1,6 +1,6 @@
 <head>
   <title>Recipe Manager</title>
-  <link href="static/style.css" rel="stylesheet" type="text/css" />
+  <link href="../static/style.css" rel="stylesheet" type="text/css" />
   </head>
 
 <body onload="browseRecipes()">
@@ -21,10 +21,10 @@
 			<legend><strong>Add Recipe</strong></legend>
 			<fieldset>
                 <!-- placeholder shows ghost text, required forces an input, pattern forces input adherence -->
-				<label for="recipe_name">recipe name</label>
+				<label for="recipe_name">Recipe Name</label>
 				 <textarea class="form-control" id="recipe_name" name="recipe_name" placeholder="" required></textarea>
 
-				<label for="serving_size">serving size:</label>
+				<label for="serving_size">Serving Size:</label>
 				<input type="number" class="form-control" id="serving_size" name="serving_size" pattern="[A-Za-z0-9]{1,}" placeholder="" min="0" required>
 
 				<label for="ingredients">Ingredients:</label>
