@@ -76,6 +76,7 @@ def recipe_detail(recipe_id):
 
         # render edit_cats page passing our query data and adopter data to the edit_cats template
         return render_template("search_results.j2", data=data)
+    # source https://stackoverflow.com/questions/41300486/search-function-in-flask
 
 @app.route('/random_recipe', methods=['GET'])
 def get_products():
